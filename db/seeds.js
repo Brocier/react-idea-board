@@ -16,6 +16,7 @@ Idea
   .remove({})
   .then(() => mars.save())
   .then(() => tesla.save())
+  .then(() => boring.save())
   .then(() => console.log('Successful Save!!!'))
   .then(() => mongoose.connection.close())
   .catch((error) => console.log(error))
