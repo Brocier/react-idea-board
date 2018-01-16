@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const app = express()
+const {Ideas} = require('./db/schema.js')
 app.use(express.static(__dirname + '/client/build/'));
 
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
@@ -22,6 +23,9 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/build/index.html')
 })
+
+const ideasController = require('./controllers/IdeasController.js')
+app.use('/ideas', ideasController)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
