@@ -3,6 +3,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const app = express()
+app.use(express.static(__dirname + '/client/build/'));
+
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
 
 const connection = mongoose.connection
@@ -16,8 +18,9 @@ connection.on('error', (err) => {
 })
 
 app.use(bodyParser.json())
+
 app.get('/', (req, res) => {
-  res.send('Hello from the server side!')
+  res.sendFile(__dirname + '/client/build/index.html')
 })
 
 const PORT = process.env.PORT || 3001
