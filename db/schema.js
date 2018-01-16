@@ -9,7 +9,8 @@ const IdeaSchema = new Schema({
   },
   description: {
     type: String
-  }
+  },
+  timestamps: {}
 })
 
 const UserSchema = new Schema({
@@ -22,7 +23,8 @@ const UserSchema = new Schema({
   password: {
     type: String
   },
-  ideas: [IdeaSchema]
+  ideas: [IdeaSchema],
+  timestamps: {}
 })
 
 const User = mongoose.model('User', UserSchema)
